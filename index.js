@@ -14,3 +14,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+const xrange = require('xrange');
+
+module.exports = 
+{
+  char_range: function(c1, c2, gap) {
+    gap = gap || 1;
+
+    if (typeof c1 !== 'string' || typeof c2 !== 'string') {
+      throw 'C1 and C2 must all be string';
+    };
+
+    return xrange(c1.charCodeAt(0), c2.charCodeAt(0)+1, gap).map( (i) => {
+      return String.fromCharCode(i)
+    }); 
+  },
+  
+  array_groups: function(array, size) {
+    size = size || 1;
+
+    if ( Array.isArray(array) === 'false' ) {
+      throw 'First argument needs to be an array';
+    } else if (size > array.length) {
+      throw 'Cannot slice array into that many parts';
+    }
+
+    return xrange(0, array.length+1, size).map( (i) => {
+      return array.slice(i,i+size);
+    });
+  },
+};

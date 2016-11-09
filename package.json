@@ -1,0 +1,24 @@
+{
+  "name": "evenly-utils",
+  "version": "0.0.1",
+  "description": "various utility functions for Evenly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/infwonder/evenly-utils.git"
+  },
+  "keywords": [
+    "Evenly"
+  ],
+  "author": "Jason Lin",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/infwonder/evenly-utils/issues"
+  },
+  "dependencies": {
+    "xrange": "^1.0.1"
+  }
+}
