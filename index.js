@@ -15,7 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+'use strict';
+
 const xrange = require('xrange');
+const C = require('crypto');
+const math = require('mathjs');
+const check = require('check-types');
 
 module.exports = 
 {
@@ -44,4 +49,25 @@ module.exports =
       return array.slice(i,i+size);
     });
   },
+
+  bucketmap: function(level) {
+    level = level || 1;
+  
+    if (level > 4) {
+      throw 'Currently, Evenly only supports up to 65536 nodes per ring';
+    } else if (!(check.integer(level))) {
+      throw 'Level must be an integer'
+    }
+    
+    var p = Array.apply( null, Array(level) ).map( () => {return '0'} ).join('');
+    var s = -1 * level;
+    var i = math.pow(16, level);
+    var e = xrange(0,i).toArray();
+    var h = e.map( (j) => { return ( p + (j).toString(16)).substr(s) } );
+    var bout = {};
+  
+    h.map( (k) => { bout[k] = C.createHash('md5').update(k).digest('hex');} );
+  
+    return bout;
+  }
 };

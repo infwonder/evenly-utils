@@ -19,6 +19,8 @@
     "url": "https://github.com/infwonder/evenly-utils/issues"
   },
   "dependencies": {
+    "check-types": "^7.0.1",
+    "mathjs": "^3.7.0",
     "xrange": "^1.0.1"
   }
 }
