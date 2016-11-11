@@ -45,8 +45,12 @@ module.exports =
       throw 'Cannot slice array into that many parts';
     }
 
-    return xrange(0, array.length+1, size).map( (i) => {
-      return array.slice(i,i+size);
+    var total = array.length + 1;
+    var frac = math.mod(total, size);
+    var groups = ((total - frac)/size) + 1;
+
+    return xrange(0, array.length+1, groups).map( (i) => {
+      return array.slice(i,i+groups);
     });
   },
 
